@@ -1,1 +1,95 @@
-Hello worke1r
+<!DOCTYPE html>
+<html>
+<head>
+    <title>POST Request Example</title>
+    <style>
+        /* 用于居中图片的样式 */
+        .centered {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 300px; /* 图片容器的高度 */
+        }
+
+        /* 用于设置按钮位置的样式 */
+        .button-container {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+
+<div class="centered">
+    <img id="image" src="https://example.com/image.jpg" alt="网络图片">
+</div>
+<div class="button-container">
+    <button onclick="sendPostRequest()">亲亲佳鑫宝贝儿！</button>
+</div>
+</body>
+
+<script>
+    function sendPostRequest() {
+
+        const xhr = new XMLHttpRequest();
+        const url = 'https://zhsq.heibaokeji.com/index/door/mycode';
+
+        // 设置请求方法和URL
+        xhr.open('POST', url, true);
+
+        // // 设置请求头（如果需要）
+        xhr.setRequestHeader('host', 'zhsq.heibaokeji.com');
+        xhr.setRequestHeader('content-length', '13');
+        xhr.setRequestHeader('xweb_xhr', '1');
+        xhr.setRequestHeader('x-access-token', 'user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36 MicroMessenger/6.8.0(0x16080000) NetType/WIFI MiniProgramEnv/Mac MacWechat/WMPF MacWechat/3.8.6(0x13080610) XWEB/1156');
+        xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded');
+        xhr.setRequestHeader('accept', '*/*');
+        xhr.setRequestHeader('sec-fetch-site', 'cross-site');
+        xhr.setRequestHeader('sec-fetch-mode', 'cors');
+        xhr.setRequestHeader('sec-fetch-dest', 'empty');
+        xhr.setRequestHeader('referer', 'https://servicewechat.com/wxe227285f74189660/29/page-frame.html');
+        xhr.setRequestHeader('accept-encoding', 'gzip');
+        xhr.setRequestHeader('accept-language', 'zh-CN,zh;q=0.9');
+
+        // 构建请求体内容，这里是一个示例
+        const requestBody = 'user_id=19179';
+
+        // 定义请求完成后的回调函数
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                // 解析 JSON 数据
+                const parsedData = JSON.parse(xhr.responseText);
+                // 获取图片 URL
+                const imageUrl = parsedData.data;
+                const url = "https://zhsq.heibaokeji.com/" + imageUrl;
+                // displayResponse(parsedData);
+                displayImage(url);
+            } else {
+                // 请求失败，弹窗提示错误
+                alert('快找老公！ ' + xhr.status);
+            }
+        };
+
+        // 发送请求
+        xhr.send(requestBody);
+    }
+
+    function displayImage(url) {
+        const imageElement = document.getElementById('image');
+        imageElement.src = url; // 设置图片的 src 属性
+    }
+
+    function displayResponse(responseData) {
+        // 获取用于显示响应的 DOM 元素
+        const responseDiv = document.getElementById('response');
+        // 将 JSON 数据转换为字符串格式，然后显示在页面上
+        responseDiv.innerHTML = '<pre>' + JSON.stringify(responseData, null, 2) + '</pre>';
+    }
+
+    sendPostRequest()
+</script>
+
+</body>
+</html>
+
+
