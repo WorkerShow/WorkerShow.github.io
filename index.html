@@ -8,12 +8,20 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 300px; /* 图片容器的高度 */
+            width: 100%; /* 图片宽度占满父容器 */
+            height: auto; /* 图片容器的高度 */
         }
 
         /* 用于设置按钮位置的样式 */
         .button-container {
             text-align: center;
+        }
+
+        .container-img {
+            width: 100%; /* 图片宽度占满父容器 */
+            height: auto; /* 保持宽高比 */
+            display: block; /* 确保图片在父容器中占据整个宽度 */
+            position: absolute;
         }
     </style>
 </head>
